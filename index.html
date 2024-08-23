@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulated Slow Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f6b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #content {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Simulated Slow Loading Page</h1>
+    </header>
+    <main>
+        <p>Content will appear after a simulated delay...</p>
+        <button id="simulateAction">Click Me</button>
+        <div id="content" class="hidden">
+            <p>This content appears after a delay.</p>
+        </div>
+    </main>
+    <script>
+        // Function to simulate a delay
+        function simulateDelay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Simulate slow page load by showing content after a delay
+        async function showContentAfterDelay() {
+            await simulateDelay(5000); // 5-second delay
+            document.getElementById('content').classList.remove('hidden');
+        }
+
+        // Simulate action with a delay
+        async function simulateAction() {
+            await simulateDelay(3000); // 3-second delay
+            alert('Action completed after a delay.');
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            showContentAfterDelay();
+
+            // Add event listener to button
+            document.getElementById('simulateAction').addEventListener('click', simulateAction);
+        });
+    </script>
+</body>
+</html>
